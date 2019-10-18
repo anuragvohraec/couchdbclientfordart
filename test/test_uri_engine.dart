@@ -24,7 +24,7 @@ main (){
     const uriString = "/mydb";
     var result = URIEngine.indentifyTheAction(HttpMethod.POST, uriString);
 
-    expect( result.action,Action.CREATE_A_NEW_DOC);
+    expect( result.action,Action.POST_A_NEW_DOC);
     var map = result.parser.parse(result.inputUri);
     expect(map['db'], "mydb");
   });
@@ -33,7 +33,7 @@ main (){
     const uriString = "/mydb";
     var result = URIEngine.indentifyTheAction(HttpMethod.PUT, uriString);
 
-    expect( result.action,Action.CREATE_A_NEW_DB);
+    expect( result.action,Action.PUT_A_NEW_DB);
     var map = result.parser.parse(result.inputUri);
     expect(map['db'], "mydb");
   });
@@ -42,7 +42,7 @@ main (){
     const uriString = "/mydb";
     var result = URIEngine.indentifyTheAction(HttpMethod.HEAD, uriString);
 
-    expect( result.action,Action.CHECK_DB_EXTIENCE);
+    expect( result.action,Action.CHECK_DB_EXISTENCE);
     var map = result.parser.parse(result.inputUri);
     expect(map['db'], "mydb");
   });
@@ -60,7 +60,7 @@ main (){
     const uriString = "/mydb/1234";
     var result = URIEngine.indentifyTheAction(HttpMethod.GET, uriString);
 
-    expect( result.action,Action.GIVE_THE_DOCUMENT);
+    expect( result.action,Action.GET_THE_DOCUMENT);
     var map = result.parser.parse(result.inputUri);
     expect(map['db'], "mydb");
     expect(map['docid'], "1234");
@@ -78,7 +78,7 @@ main (){
     const uriString = "/mydb/1234";
     var result = URIEngine.indentifyTheAction(HttpMethod.PUT, uriString);
 
-    expect( URIEngine.indentifyTheAction(HttpMethod.PUT, "/mydb/1234").action,Action.CREATE_A_NEW_OR_NEW_VERSION_OF_DOC);
+    expect( URIEngine.indentifyTheAction(HttpMethod.PUT, "/mydb/1234").action,Action.PUT_A_DOC);
     var map = result.parser.parse(result.inputUri);
     expect(map['db'], "mydb");
     expect(map['docid'], "1234");
@@ -88,7 +88,7 @@ main (){
     const uriString = "/mydb/1234";
     var result = URIEngine.indentifyTheAction(HttpMethod.HEAD, uriString);
 
-    expect( result.action,Action.GIVE_HEADERS_FOR_THE_DOC);
+    expect( result.action,Action.CHECK_DOC_EXISTENCE);
     var map = result.parser.parse(result.inputUri);
     expect(map['db'], "mydb");
     expect(map['docid'], "1234");
@@ -103,22 +103,22 @@ main (){
     expect(map['db'], "mydb");
     expect(map['docid'], "1234");
   });
-
+/*
   test("CASE 12: CREATE_A_COPY_OF_THE_DOC",(){
     const uriString = "/mydb/1234";
     var result = URIEngine.indentifyTheAction(HttpMethod.COPY, uriString);
 
-    expect( result.action,Action.CREATE_A_COPY_OF_THE_DOC);
+    expect( result.action,Action.COPY_THE_DOC);
     var map = result.parser.parse(result.inputUri);
     expect(map['db'], "mydb");
     expect(map['docid'], "1234");
-  });
+  });*/
 
   test("CASE 13: GIVE_THE_DESIGN_DOC: GET /{db}/_design/{ddoc}",(){
     const uriString = "/mydb/_design/foremployees";
     var result = URIEngine.indentifyTheAction(HttpMethod.GET, uriString);
 
-    expect( result.action,Action.GIVE_THE_DESIGN_DOC);
+    expect( result.action,Action.GET_THE_DESIGN_DOC);
     var map = result.parser.parse(result.inputUri);
     expect(map['db'], "mydb");
     expect(map['ddoc'], "foremployees");
@@ -136,7 +136,7 @@ main (){
     const uriString = "/mydb/_design/foremployees";
     var result = URIEngine.indentifyTheAction(HttpMethod.PUT, uriString);
 
-    expect( result.action,Action.CREATE_A_NEW_OR_NEW_VERSION_OF_DESIGN_DOC);
+    expect( result.action,Action.PUT_A_DESIGN_DOC);
     var map = result.parser.parse(result.inputUri);
     expect(map['db'], "mydb");
     expect(map['ddoc'], "foremployees");
@@ -146,7 +146,7 @@ main (){
     const uriString = "/mydb/_design/foremployees";
     var result = URIEngine.indentifyTheAction(HttpMethod.HEAD, uriString);
 
-    expect( result.action,Action.GIVE_HEADERS_FOR_DESIGN_DOC);
+    expect( result.action,Action.CHECK_DESIGN_DOC_EXISTENCE);
     var map = result.parser.parse(result.inputUri);
     expect(map['db'], "mydb");
     expect(map['ddoc'], "foremployees");
@@ -161,22 +161,24 @@ main (){
     expect(map['db'], "mydb");
     expect(map['ddoc'], "foremployees");
   });
+/*
 
   test("CASE 17: COPIES_THE_DESIGN_DOC: COPY /{db}/_design/{ddoc}",(){
     const uriString = "/mydb/_design/foremployees";
     var result = URIEngine.indentifyTheAction(HttpMethod.COPY, uriString);
 
-    expect( result.action,Action.COPIES_THE_DESIGN_DOC);
+    expect( result.action,Action.COPY_THE_DESIGN_DOC);
     var map = result.parser.parse(result.inputUri);
     expect(map['db'], "mydb");
     expect(map['ddoc'], "foremployees");
   });
+*/
 
   test("CASE 18: GIVE_RESULT_OF_VIEW: GET /{db}/_design/{ddoc}/_view/{view}",(){
     const uriString = "/mydb/_design/foremployees/_view/by_salary";
     var result = URIEngine.indentifyTheAction(HttpMethod.GET, uriString);
 
-    expect( result.action,Action.GIVE_RESULT_OF_VIEW);
+    expect( result.action,Action.GET_THE_RESULT_OF_VIEW);
     var map = result.parser.parse(result.inputUri);
     expect(map['db'], "mydb");
     expect(map['ddoc'], "foremployees");
@@ -187,12 +189,56 @@ main (){
     const uriString = "/mydb/_design/foremployees/_view/by_salary";
     var result = URIEngine.indentifyTheAction(HttpMethod.POST, uriString);
 
-    expect( result.action,Action.GIVE_RESULT_OF_SPECIFIED_VIEW_QUERY);
+    expect( result.action,Action.POST_A_VIEW_QUERY);
     var map = result.parser.parse(result.inputUri);
     expect(map['db'], "mydb");
     expect(map['ddoc'], "foremployees");
     expect(map['view'], "by_salary");
   });
 
+  test("CASE 20: GIVE_HEADERS_FOR_ATTACHMENT: POST /{db}/{docid}/{attname}",(){
+    const uriString = "/mydb/123/profile.png";
+    var result = URIEngine.indentifyTheAction(HttpMethod.HEAD, uriString);
+
+    expect( result.action,Action.CHECK_ATTACHMENT_EXISTENCE);
+    var map = result.parser.parse(result.inputUri);
+    expect(map['db'], "mydb");
+    expect(map['docid'], "123");
+    expect(map['attname'], "profile.png");
+  });
+
+
+  test("CASE 21: GIVE_ATTACHMENT_FOR_DOC: GET /{db}/{docid}/{attname}",(){
+    const uriString = "/mydb/123/profile.png";
+    var result = URIEngine.indentifyTheAction(HttpMethod.GET, uriString);
+
+    expect( result.action,Action.GET_ATTACHMENT_FOR_THE_DOC);
+    var map = result.parser.parse(result.inputUri);
+    expect(map['db'], "mydb");
+    expect(map['docid'], "123");
+    expect(map['attname'], "profile.png");
+  });
+
+  test("CASE 22: ADD_ATTACHMENT_TO_DOC: PUT /{db}/{docid}/{attname}",(){
+    const uriString = "/mydb/123/profile.png";
+    var result = URIEngine.indentifyTheAction(HttpMethod.PUT, uriString);
+
+    expect( result.action,Action.PUT_AN_ATTACHMENT_TO_THE_DOC);
+    var map = result.parser.parse(result.inputUri);
+    expect(map['db'], "mydb");
+    expect(map['docid'], "123");
+    expect(map['attname'], "profile.png");
+  });
+
+  test("CASE 22: DELETE_THE_ATTACHMENT_OF_DOC: PUT /{db}/{docid}/{attname}",(){
+    const uriString = "/mydb/123/profile.png";
+    var result = URIEngine.indentifyTheAction(HttpMethod.DELETE, uriString);
+
+    expect( result.action,Action.DELETE_THE_ATTACHMENT_OF_THE_DOC);
+    var map = result.parser.parse(result.inputUri);
+    expect(map['db'], "mydb");
+    expect(map['docid'], "123");
+    expect(map['attname'], "profile.png");
+  });
 
 }
