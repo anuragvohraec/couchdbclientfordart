@@ -168,9 +168,9 @@ enum Action {
   GET_INFO_ABT_A_DB,
   ///**PUT /{db}**
   PUT_A_NEW_DB,
-  ///DELETE /{db}**
+  ///**DELETE /{db}**
   DELETE_THE_DB,
-  ///POST /{db}**
+  ///**POST /{db}**
   POST_A_NEW_DOC,
   ///**HEAD /{db}/{docid}**
   CHECK_DOC_EXISTENCE,
