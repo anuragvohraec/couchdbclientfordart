@@ -5,8 +5,6 @@ import 'dart:typed_data';
 
 import 'package:couchdbclientfordart/engines/uri/uriengine.dart';
 import 'package:http/http.dart';
-import 'package:async/async.dart';
-import 'package:http_parser/http_parser.dart';
 
 class CompositeResponse{
   String body;
