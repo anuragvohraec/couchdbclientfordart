@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - Initial release
 
-* TODO: Describe initial release.
+* Is capable of directly interacting with the couchdb server. Not all API are implemented , but most of the major are.
