@@ -30,23 +30,23 @@ class HttpEngine{
     switch(result.action){
 
       case Action.GET_DBMS_INFO:
-        var res = await get(url);
+        var res = await get(url , headers: headers);
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.CHECK_DB_EXISTENCE:
-        var res = await  head(url);
+        var res = await  head(url, headers: headers);
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.GET_INFO_ABT_A_DB:
-        var res = await   get(url);
+        var res = await   get(url, headers: headers);
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.PUT_A_NEW_DB:
-        var res = await   put(url);
+        var res = await   put(url, headers: headers);
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.DELETE_THE_DB:
-        var res = await   delete(url);
+        var res = await   delete(url, headers: headers);
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.POST_A_NEW_DOC:
@@ -54,11 +54,11 @@ class HttpEngine{
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.CHECK_DOC_EXISTENCE:
-        var res = await   head(url);
+        var res = await   head(url, headers: headers);
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.GET_THE_DOCUMENT:
-        var res = await   get(url);
+        var res = await   get(url, headers: headers);
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.PUT_A_DOC:
@@ -66,15 +66,15 @@ class HttpEngine{
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.DELETE_THE_DOC:
-        var res = await   delete(url);
+        var res = await   delete(url, headers: headers);
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.CHECK_DESIGN_DOC_EXISTENCE:
-        var res = await   head(url);
+        var res = await   head(url, headers: headers);
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.GET_THE_DESIGN_DOC:
-        var res = await   get(url);
+        var res = await   get(url, headers: headers);
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.PUT_A_DESIGN_DOC:
@@ -82,11 +82,11 @@ class HttpEngine{
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.DELETE_A_DESIGN_DOC:
-        var res = await   delete(url);
+        var res = await   delete(url, headers: headers);
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.GET_THE_RESULT_OF_VIEW:
-        var res = await  get(url);
+        var res = await  get(url, headers: headers);
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.POST_A_VIEW_QUERY:
@@ -94,11 +94,11 @@ class HttpEngine{
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.CHECK_ATTACHMENT_EXISTENCE:
-        var res = await  head(url);
+        var res = await  head(url, headers: headers);
         return CompositeResponse(res.body,res.headers,res.statusCode, result.action);
         break;
       case Action.GET_ATTACHMENT_FOR_THE_DOC:
-        var res = await  get(url);
+        var res = await  get(url, headers: headers);
         final fileName = url.split("/").last;
         Uint8List bytes = res.bodyBytes;
         if(localFilePathToSaveAttachment.endsWith("/")){
