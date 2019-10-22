@@ -1,6 +1,6 @@
 name: couchdbclientfordart
 description: A couch db client written for dart and flutter.
-version: 0.0.1
+version: 0.0.2
 author: Anurag Vohra<anuragvohraec@gmail.com>
 homepage: https://github.com/anuragvohraec/couchdbclientfordart.git
 
