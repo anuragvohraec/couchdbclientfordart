@@ -8,7 +8,7 @@ import 'package:http/http.dart';
 
 class CompositeResponse{
   String body;
-  Map<String, String> headers;
+  Map<String, dynamic> headers;
   int statusCode;
   Action reqAction;
   CompositeResponse(this.body, this.headers, this.statusCode, this.reqAction);
